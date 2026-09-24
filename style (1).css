@@ -1,0 +1,76 @@
+/* ==========================================================
+   style.css — ธีมฟ้าน้ำเงินสีอ่อน สบายตา
+   โหลดหลัง <style> ใน index.html จึงทับค่าสีเดิมได้
+   ปรับโทนทั้งหน้าได้ที่ตัวแปรใน :root ด้านล่าง
+   ========================================================== */
+
+:root {
+  color-scheme: light;
+  --ind:    #3f6fc0;   /* ฟ้าน้ำเงินหลัก (ปุ่ม, เมนูที่เลือก) */
+  --ind-l:  #e8f0fc;   /* ฟ้าอ่อนมาก (พื้นหลังเมนู/ปุ่มรอง) */
+  --mint:   #2a8a96;   /* ฟ้าเขียวอ่อน (ปุ่ม "จำได้", เสียงที่เปิดอยู่) */
+  --mint-l: #dff3f5;
+  --pink:   #c65f80;   /* โทนกุหลาบนุ่ม (ปุ่ม "จำไม่ได้", เตือนเครียดสูง) */
+  --pink-l: #fbe9f0;
+  --bg:     #f3f7fd;   /* พื้นหลังหน้า */
+  --tx:     #1f3556;   /* กรมท่าเข้ม สำหรับตัวอักษร */
+  --mu:     #667a99;   /* ตัวอักษรรอง */
+  --bd:     #d9e5f5;   /* เส้นขอบ */
+}
+
+body { background: var(--bg); color: var(--tx); }
+::selection { background: #cfe0f8; }
+:focus-visible { outline-color: #7fa6e6; }
+
+/* ---------- เมนู ---------- */
+nav { background: #fafcff; border-color: var(--bd); }
+.logo { color: var(--ind); }
+nav button { transition: background .2s, color .2s; }
+nav button:hover { background: var(--ind-l); color: var(--ind); }
+
+/* ---------- การ์ดและฟอร์ม ---------- */
+.card { background: #fff; border-color: var(--bd); box-shadow: 0 1px 2px rgba(63, 111, 192, .05); }
+input, select, textarea { border-color: var(--bd); background: #fbfdff; }
+input::placeholder, textarea::placeholder { color: #9aabc4; }
+input:focus, select:focus, textarea:focus { outline: 0; border-color: #7fa6e6; box-shadow: 0 0 0 3px rgba(127, 166, 230, .25); }
+
+/* ---------- ปุ่ม ---------- */
+.btn { transition: filter .15s, transform .1s; }
+.btn:hover { filter: brightness(.94); }
+.btn:active { transform: scale(.98); }
+.btn:disabled { opacity: .45; cursor: not-allowed; filter: none; }
+.btn.g { background: var(--ind-l); color: var(--ind); }
+.modes .btn[aria-pressed=true],
+.snd .btn[aria-pressed=true] { color: #fff; }
+
+/* ---------- แฟลชการ์ด ---------- */
+.f { background: linear-gradient(135deg, #3f6fc0, #6f9ce6); color: #fff; }
+.b { background: var(--mint-l); color: #124b54; }
+
+/* ---------- ตารางงาน ---------- */
+.task { border-bottom-color: var(--bd); }
+.task input { accent-color: var(--ind); }
+.p3 { background: var(--pink-l); color: #8f3a58; }
+.p2 { background: #fdf3d8; color: #7a5a10; }
+.p1 { background: var(--mint-l); color: #1d6a74; }
+.late { color: #c2415f !important; }
+
+/* ---------- Pomodoro (สีวงแหวนถูก JS ตั้งแบบ inline จึงใช้ !important) ---------- */
+.ring circle:first-child { stroke: #e3ecf9; }
+#arc { stroke: #3f6fc0 !important; }
+.modes:has(#mB[aria-pressed=true]) ~ .ring #arc { stroke: #2a8a96 !important; }
+
+/* ---------- ความเครียด ---------- */
+.mood { border-color: var(--bd); background: #fbfdff; transition: border-color .2s, background .2s; }
+.mood:hover { border-color: #a9c3ec; }
+.mood[aria-pressed=true] { border-color: var(--ind); background: var(--ind-l); color: var(--ind); }
+.tips { background: var(--mint-l); color: #124b54; }
+.tips.hi { background: var(--pink-l); color: #6e2942; }
+.orb { background: radial-gradient(circle at 35% 30%, #cfe0fb, #6f9ce6); box-shadow: 0 0 40px rgba(111, 156, 230, .35); }
+.bar { color: var(--mu); }
+
+/* ---------- มือถือ ---------- */
+@media (max-width: 800px) {
+  nav { background: #fafcff; box-shadow: 0 -2px 12px rgba(63, 111, 192, .08); }
+  nav button[aria-current=page] { background: var(--ind-l); }
+}
